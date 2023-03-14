@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Add Product</h4>
+                    <p class="card-description">Add Products here...!</p>
+                     <form class="forms-sample" method="post" action="{% url 'productsave' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                        <label for="exampleSelectGender">Category</label>
+                        <select class="form-control" id="exampleSelectGender" name="category">
+                            <option>Select</option>
+                            {% for d in data %}
+                          <option>{{d.Category_Name}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleInputName1">Product Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="name" name="product">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">Price</label>
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="price" name="price">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword4">Quantity</label>
+                        <input type="number" class="form-control" id="exampleInputPassword4" placeholder="quantity" name="quantity">
+                      </div>
+<!--                      <div class="form-group">-->
+<!--                        <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+
+<!--                        <div class="input-group col-xs-12">-->
+<!--                          <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+<!--                          <span class="input-group-append">-->
+<!--                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                          </span>-->
+<!--                        </div>-->
+<!--                      </div>-->
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Description</label>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="des"></textarea>
+                      </div>
+                          <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img[]" class="">
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+<!--                      <button class="btn btn-dark">Cancel</button>-->
+                    </form>
+                  </div>
+                </div>
+
+     {% if messages %}
+        {% for i in messages %}
+
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      {% if i.tags == 'warning' %}
+      <script>
+        swal('{{i}}','','warning');
+      </script>
+      {% elif i.tags == 'error' %}
+      <script>
+        swal('{{i}}','','error');
+      </script>
+      {% else %}
+      <script>
+        swal('{{i}}','','success');
+      </script>
+      {% endif %}
+
+      {% endfor %} {% endif %}
+
+</body>
+</html>
+{% endblock %}

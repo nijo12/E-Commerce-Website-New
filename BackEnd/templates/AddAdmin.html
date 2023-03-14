@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Basic form elements</h4>
+                    <p class="card-description"> Basic form elements </p>
+                <form class="forms-sample" method="post" action="{% url 'adminsave' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Contact Number</label>
+                        <input type="number" class="form-control" id="" placeholder="Contact Number" name="number">
+                      </div>
+                         <div class="form-group">
+                        <label for="exampleInputName1">User Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="user">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" id="" placeholder="Password" name="pass">
+                      </div>
+                       <div class="form-group">
+                        <label for="">Confirm Password</label>
+                        <input type="password" class="form-control" id="" placeholder="Confirm Password" name="confirm">
+                      </div>
+<!--                      <div class="form-group">-->
+<!--                        <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+                      <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img[]" class="">
+<!--                        <div class="input-group col-xs-12">-->
+<!--                          <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+<!--                          <span class="input-group-append">-->
+<!--                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                          </span>-->
+<!--                        </div>-->
+                      </div>
+<!--                      <div class="form-group">-->
+<!--                        <label for="exampleInputCity1">City</label>-->
+
+                        <!--                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">-->
+<!--                      </div>-->
+<!--                      <div class="form-group">-->
+<!--                        <label for="exampleTextarea1">Textarea</label>-->
+<!--                        <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>-->
+<!--                      </div>-->
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+     {% if messages %}
+        {% for i in messages %}
+
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      {% if i.tags == 'warning' %}
+      <script>
+        swal('{{i}}','','warning');
+      </script>
+      {% elif i.tags == 'error' %}
+      <script>
+        swal('{{i}}','','error');
+      </script>
+      {% else %}
+      <script>
+        swal('{{i}}','','success');
+      </script>
+      {% endif %}
+
+      {% endfor %} {% endif %}
+
+</body>
+</html>
+{% endblock %}
